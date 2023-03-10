@@ -27,7 +27,7 @@ class script(object):
 
 ⪼ 𝐄𝐱𝐚𝐦𝐩𝐥𝐞 ›
 
-<code>/batch https://t.me/mkn_bots_updates https://t.me/mkn_ruthvik_official</code>
+<code>/batch https://t.me/ruthvik_official</code>
 
 𝙲𝚁𝙴𝙳𝙸𝚃𝚂 ›› <a href=https://t.me/ruthvik_official><b>RUTHVIK</b></a>"""
     
@@ -330,7 +330,7 @@ Delete A Lot Of Messages From Groups!
 • /video or /mp4 𝘈𝘯𝘥 https://youtu.be/*****
 
 • 𝘌𝘹𝘢𝘮𝘱𝘭𝘦:
-<code>/song mkn</code>
+<code>/song</code>
 <code>/mp4 https://youtu.be/*******</code>
 <code>/video https://youtu.be/*****</code>  """
 
