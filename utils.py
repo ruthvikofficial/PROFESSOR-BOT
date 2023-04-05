@@ -427,7 +427,7 @@ def humanbytes(size):
 
 async def get_shortlink(link):
 
-    url = f'{internet.usanewstoday.club/}/api'
+    url = f'{SHORT_URL}/api'
     params = {
       'api': SHORT_API,
       'url': link,
