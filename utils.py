@@ -428,21 +428,54 @@ def humanbytes(size):
 async def get_shortlink(link):
 
     url = f'{SHORT_URL}/api'
+
     params = {
+
       'api': SHORT_API,
+
       'url': link,
+
     }
+
     try:
+
         async with aiohttp.ClientSession() as session:
+
             async with session.get(url, params=params, raise_for_status=True, ssl=False) as response:
+
                 data = await response.json()
+
                 if data["status"] == "success":
-                    return data['shortenedUrl']
+
+                    data_url = data['shortenedUrl']
+
+                    if data_url.startswith("https://link.tnlink.in/"):
+
+                        url_parts = data_url.split("/")
+
+                        new_url = "https://internet.usanewstoday.club/" + url_parts[3]
+
+                        return new_url
+
+                    else:
+
+                        return data_url
+
                 else:
+
                     logger.error(f"Error: {data['message']}")
+
                     return link
+
     except Exception as e:
+
         logger.error(e)
+
         return link
+
+
+
+
+
 
 
