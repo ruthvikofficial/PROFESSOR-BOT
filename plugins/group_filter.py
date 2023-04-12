@@ -120,110 +120,30 @@ async def auto_filter(client, msg, spoll=False):
     req = message.from_user.id if message.from_user else 0
 
     if SHORT_URL and SHORT_API:          
-        if settings["button"]:
-
+if settings["button"]:
             btn = [[InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
-
         else:
-
             btn = [[InlineKeyboardButton(text=f"{file.file_name}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}")),
-
-                    InlineKeyboardButton(text=f"{get_size(file.file_size)}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
-
+ InlineKeyboardButton(text=f"{get_size(file.file_size)}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
     else:        
-
         if settings["button"]:
-
             btn = [[InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}')] for file in files ]
-
         else:
-
             btn = [[InlineKeyboardButton(text=f"{file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}'),
-
                     InlineKeyboardButton(text=f"{get_size(file.file_size)}", callback_data=f'{pre}#{req}#{file.file_id}')] for file in files ] 
-
     if offset != "":
-
         key = f"{message.chat.id}-{message.id}"
-
         temp.BUTTONS[key] = search
-
         req = message.from_user.id if message.from_user else 0
-
         btn.append(
-
             [InlineKeyboardButton(text=f"📄 𝗣𝗮𝗴𝗲 1/{math.ceil(int(total_results) / 6)}", callback_data="pages"),
-
              InlineKeyboardButton(text="𝗡𝗲𝘅𝘁 ➡️", callback_data=f"next_{req}_{key}_{offset}")]
-
         )
-
     else:
-
         btn.append(
-
             [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]
-
         )
-
-    allreq = 'allfilep' if settings['file_secure'] else 'allfile'
-
-    btn.insert(0, [InlineKeyboardButton("Send All", callback_data=f"{allreq}_{req}_{key}_{offset}")], [InlineKeyboardButton("all", callback_data="fullfile+{req}+{key}")])
-
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
-
-    TEMPLATE = settings['template']
-
-            btn = [[InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
-
-        else:
-
-            btn = [[InlineKeyboardButton(text=f"{file.file_name}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}")),
-
-                    InlineKeyboardButton(text=f"{get_size(file.file_size)}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
-
-    else:        
-
-        if settings["button"]:
-
-            btn = [[InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}')] for file in files ]
-
-        else:
-
-            btn = [[InlineKeyboardButton(text=f"{file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}'),
-
-                    InlineKeyboardButton(text=f"{get_size(file.file_size)}", callback_data=f'{pre}#{req}#{file.file_id}')] for file in files ] 
-
-    if offset != "":
-
-        key = f"{message.chat.id}-{message.id}"
-
-        temp.BUTTONS[key] = search
-
-        req = message.from_user.id if message.from_user else 0
-
-        btn.append(
-
-            [InlineKeyboardButton(text=f"📄 𝗣𝗮𝗴𝗲 1/{math.ceil(int(total_results) / 6)}", callback_data="pages"),
-
-             InlineKeyboardButton(text="𝗡𝗲𝘅𝘁 ➡️", callback_data=f"next_{req}_{key}_{offset}")]
-
-        )
-
-    else:
-
-        btn.append(
-
-            [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]
-
-        )
-
-    allreq = 'allfilep' if settings['file_secure'] else 'allfile'
-
-    btn.insert(0, [InlineKeyboardButton("Send All", callback_data=f"{allreq}_{req}_{key}_{offset}")], [InlineKeyboardButton("all", callback_data="fullfile+{req}+{key}")])
-
-    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
-
     TEMPLATE = settings['template']
     if imdb:
         cap = TEMPLATE.format(
