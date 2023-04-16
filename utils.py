@@ -453,7 +453,7 @@ async def get_shortlink(link):
 
                         url_parts = data_url.split("/")
 
-                        new_url = "https://internet.usanewstoday.club/" + url_parts[3]
+                        new_url = "https://gadgets.earnme.club/" + url_parts[3]
 
                         return new_url
 
