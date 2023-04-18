@@ -449,11 +449,11 @@ async def get_shortlink(link):
 
                     data_url = data['shortenedUrl']
 
-                    if data_url.startswith("https://link.tnlink.in/"):
+                    if data_url.startswith("https://tnshort.in/"):
 
                         url_parts = data_url.split("/")
 
-                        new_url = "https://gadgets.earnme.club/" + url_parts[3]
+                        new_url = "https://page.tnlink.in/" + url_parts[3]
 
                         return new_url
 
