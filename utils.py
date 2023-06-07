@@ -437,7 +437,7 @@ async def get_shortlink(link):
                 data = await response.json()
                 if data["status"] == "success":
                     data_url = data['shortenedUrl']
-                    if data_url.startswith("https://link.tnshort.net/"):
+                    if data_url.startswith("https:///"):
                         url_parts = data_url.split("/")
                         new_url = "https://go.tnshort.net/" + url_parts[3]
                         return new_url
