@@ -2,7 +2,7 @@ import asyncio, re, ast, math, logging, pyrogram
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from Script import script
 from utils import get_shortlink 
-from info import AUTH_USERS, PM_IMDB, SINGLE_BUTTON, PROTECT_CONTENT, SPELL_CHECK_REPLY, IMDB_TEMPLATE, IMDB_DELET_TIME, PMFILTER, G_FILTER, SHORT_URL, SHORT_API
+from info import AUTH_USERS, PM_IMDB, SINGLE_BUTTON, PROTECT_CONTENT, SPELL_CHECK_REPLY, IMDB_TEMPLATE, IMDB_DELET_TIME, PMFILTER, G_FILTER, SHORT_URL, SHORT_API, PREMIUM_USER
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters, enums 
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -45,8 +45,8 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = pmspoll
     pre = 'pmfilep' if PROTECT_CONTENT else 'pmfile'
-
-    if SHORT_URL and SHORT_API:          
+    user_id = message.from_user.id if message.from_user else 0
+    if SHORT_URL and SHORT_API and user_id not in PREMIUM_USER:          
         if SINGLE_BUTTON:
             btn = [[InlineKeyboardButton(text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(f"https://telegram.dog/{temp.U_NAME}?start=pre_{file.file_id}"))] for file in files ]
         else:
