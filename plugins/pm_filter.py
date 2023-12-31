@@ -144,7 +144,7 @@ async def pm_spoll_choker(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply("I couldn't find any movie in that name. Contact Here if Your Movie is Not added @Volt_AdminBot")
         await asyncio.sleep(8)
         await k.delete()
         return
